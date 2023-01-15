@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Orçamento pessoal</title>
+</head>
+<body>
+    <!--Inicio area de navegacao-->
+    <nav id="navbar">
+        <a href="#"><img src="logo.png"></a>
+        <ul>
+            <li>
+                <a href="index.html">Cadastro</a>
+            </li>
+            <li>
+                <a href="consulta.html">Consulta</a>
+            </li>
+        </ul>
+    </nav>
+    <!--Fim area de navegacao-->
+    <!--Inicio area principal-->
+    <main id="container">
+        <h1>Registro de nova despesa</h1>
+        <div id="fill-field">
+            <div id="row1"><!--Primeira linha de inputs-->
+                <select id="year">
+                    <option value="">Ano</option>
+                    <option value="2023">2023</option>
+                </select>
+                <select id="month">
+                    <option value="">Mês</option>
+                    <option value="1">Janeiro</option>
+                    <option value="2">Fevereiro</option>
+                    <option value="3">Março</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Maio</option>
+                    <option value="6">Junho</option>
+                    <option value="7">Julho</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>   
+                    <option value="12">Dezembro</option>                 
+                </select>
+                <input type="text" placeholder="Dia" id="day">
+                <select id="type">
+                    <option value="">Tipo</option>
+                    <option value="1">Alimentação</option>
+                    <option value="2">Educação</option>
+                    <option value="3">Lazer</option>
+                    <option value="4">Saúde</option>
+                    <option value="5">Transporte</option>
+                </select>
+            </div>
+            <div id="row2"><!--Segunda linha de inputs-->
+                <input type="text" placeholder="Descrição" id="description">
+                <input type="text" placeholder="Valor" id="value">
+                <button type="button" onclick="popUp()"><span class="material-symbols-outlined">
+                    add
+                    </span></button>
+            </div>
+        </div>
+    </main>
+    <!--Fim area principal-->
+    <div id="blur">
+        <div id="pop-up">
+            <div id="title">
+                <h5>Erro na inclusão do registro</h5>
+            </div>
+            <div id="content">
+                <p>Erro na gravação, verifique se todos os campos foram preenchidos corretamente!</p>
+            </div>
+            <div id="btn">
+                <button onclick="popUp()">Voltar e corrigir</button>
+            </div>
+        </div>
+    </div>
+    <!--Janela popUp-->
+
+
+    <script src="script.js"></script>
+</body>
+</html>
