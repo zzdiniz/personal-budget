@@ -42,7 +42,7 @@ class Expense{                                  //classe que armazena os dados i
     }
     validate(){                                 //metodo que ira verificar se todos os dados foram preenchidos corretamente
         for(let i in this){                     //percorre cada um dos atributos do objeto
-            if(this[i]==null || this[i]==undefined || this[i]==""){//verifica cada atributo
+            if(this[i]==null || this[i]==undefined || this[i]==""){
                 return false;
             }
         }
@@ -71,8 +71,21 @@ class Db{//classe que responsavel por inserir dados no local storage
 
     record(e){
         let id=this.getNextId();                   //recupera a proxima chave
+        /*"stringify"  transforma objeto literal recebido como parametro
+        em string no formato JSON para ser incluida no local storage*/
         localStorage.setItem(id,JSON.stringify(e));//armazena  o objeto com a nova chave
         localStorage.setItem('id',id)              //estabelece nova chave como chave atual
+    }
+    retrieveRegisters(){
+        let id=localStorage.getItem('id');
+        let expenses=Array();                            //array que ira armazenar as despesas
+        for(let i=1;i<=id;i++){                    //percorre todos os registros de local storage
+            /*recupera despesa covertendo de string JSON para objeto literal*/
+            let expense=JSON.parse(localStorage.getItem(i));
+            console.log(expense) 
+            expenses.push(expense[i]); //adiciona depesa na lista de despesas 
+            console.log(expenses); 
+        }                                                                      
     }
 }
 
@@ -81,13 +94,14 @@ let db=new Db();
 
 
 function register(){
+    /*Recuperando valores do DOM */
     let year= document.getElementById('year')
     let month= document.getElementById('month')
     let day= document.getElementById('day')
     let type= document.getElementById('type')
     let description= document.getElementById('description')
     let eValue= document.getElementById('value')
-
+    /*Criando objeto literal com os valores recebidos */
     let expense = new Expense(
     year.value,
     month.value,
@@ -98,10 +112,17 @@ function register(){
 
     console.log(expense);
     if(expense.validate()==true){
-        db.record(expense);
+        db.record(expense);         //cadastrando objeto 
         popUp(true);
+        console.log("Cadastrado com sucesso!");
     }
     else{
         popUp(false);
+        console.log("Cadastro invalido")
     }   
+}
+
+
+function loadExpenses(){
+    db.retrieveRegisters();
 }
