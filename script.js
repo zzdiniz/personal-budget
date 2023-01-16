@@ -82,11 +82,11 @@ class Db{//classe que responsavel por inserir dados no local storage
             /*recupera despesa covertendo de string JSON para objeto literal*/
             let expense=JSON.parse(localStorage.getItem(i));
             console.log(i,expense);
-            let x={
+            /*let x={
                 year:expense.year,
                 month:expense.month
-            }
-            expenses.push(x);
+            }*/
+            expenses.push(expense);
             
         } 
         console.log(expenses);                                                                      
