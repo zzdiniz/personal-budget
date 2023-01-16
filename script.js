@@ -1,6 +1,5 @@
 
 function popUp(x){                               //controle do popUp lancado ao cadastrar um novo registro
-    console.log("Clique efetuado");
     let blur=document.getElementById("blur");
     let popUp=document.getElementById("pop-up");
 
@@ -82,7 +81,7 @@ class Db{//classe que responsavel por inserir dados no local storage
         for(let i=1;i<=id;i++){                    //percorre todos os registros de local storage
             /*recupera despesa covertendo de string JSON para objeto literal*/
             let expense=JSON.parse(localStorage.getItem(i));
-            
+            console.log(i,expense);
             let x={
                 year:expense.year,
                 month:expense.month
@@ -115,7 +114,6 @@ function register(){
     description.value,
     eValue.value)
 
-    console.log(expense);
     if(expense.validate()==true){
         db.record(expense);         //cadastrando objeto 
         popUp(true);
