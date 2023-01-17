@@ -245,3 +245,18 @@ function searchExpense(){
     let filteredExpenses=db.search(expense);
     this.loadExpenses(filteredExpenses);
 }
+
+function toggleVisibility(){
+    let ul=document.getElementById('dpDown');
+    let main=document.getElementById('container');
+    if(ul.className!="" || ul.className){
+        ul.className="";
+        ul.style="";
+        main.style="";
+    }
+    else{
+        ul.className="dropDown";
+        ul.style="visibility: visible;height: 61px;"
+        main.style="margin-top:60px;"
+    }
+}

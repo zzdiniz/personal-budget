@@ -38,6 +38,9 @@ body,html{
     padding: 0 5px;
     color:#f8f9fa;
 }
+#navbar > button{
+    display: none;
+}
 
 main{
     margin: 5%;

@@ -13,18 +13,23 @@
     <!--Inicio area de navegacao-->
     <nav id="navbar">
         <a href="#"><img src="logo.png"></a>
-        <ul>
+        <button type="button" onclick="toggleVisibility()">
+            <span class="material-symbols-outlined">
+            menu
+            </span>
+        </button>
+        <ul id="dpDown">
             <li>
                 <a href="index.html">Cadastro</a>
             </li>
             <li>
-                <a href="consulta.html">Consulta</a>
+                <a href="consulta.html" style="color:#f8f9fac2">Consulta</a>
             </li>
         </ul>
     </nav>
     <!--Fim area de navegacao-->
     <!--Inicio area principal-->
-    <main id="container">
+    <main class=""id="container">
         <h1>Registro de nova despesa</h1>
         <div id="fill-field">
             <div id="row1"><!--Primeira linha de inputs-->

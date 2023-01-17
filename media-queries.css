@@ -19,6 +19,7 @@
     #description{
         width: 450px;
     }
+    
 }
 @media (max-width:770px){/*breakpoint*/
     main{
@@ -48,5 +49,43 @@
     #pop-up{
         width: 100%;
     }
-
+    #navbar > ul{
+        background-color: #007bff;
+        flex-direction: column;
+        display: block;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        visibility: hidden;
+        height: 0;
+        overflow-y: hidden;
+        transition: .6s;
+    }
+    ul.dropDown{
+        visibility: visible;
+        height: 61px;
+    }
+    #navbar > button{
+        display: block;
+        position: relative;
+        top:5px;
+        margin-left:auto;
+        width: 56px;
+        height: 40px;
+        text-align: center;
+        background-color: #007bff;
+        border: 1px solid #f8f9fac2;
+        border-radius: .25rem;
+        cursor:pointer;
+        margin-bottom: 5px;
+    }
+    #navbar > button > span{
+        font-size: 40px;
+        color: #f8f9fac2;
+    }
+    #container{
+        margin-top: 5px;
+        transition: .6s;
+    }
 }
