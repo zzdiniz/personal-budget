@@ -135,6 +135,7 @@ function loadExpenses(){
     expenses=db.retrieveRegisters();
     let tableBody=document.getElementById('tableBody');
     for(exp in expenses){
+        console.log(exp);
         let date=`<td>${exp.day}/${exp.month}/${exp.year}</td>`;
         let type=`<td>${exp.type}</td>`;
         let description=`<td>${exp.description}</td>`;
