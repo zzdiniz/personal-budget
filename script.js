@@ -89,11 +89,40 @@ class Db{//classe que responsavel por inserir dados no local storage
             if(expense===null || expense===undefined){
                 continue;//caso o valor acessado tenha sido excluido, pula pra proxima iteracao
             }
+            expense.id=i;
             expenses.push(expense);
             
         } 
         console.log(expenses);  
         return expenses;                                                                    
+    }
+
+    search(expense){
+        let filteredExpenses=Array();
+        filteredExpenses=this.retrieveRegisters();
+        if(expense.year!=""){
+            filteredExpenses=filteredExpenses.filter(e=>e.year==expense.year);
+        }
+        if(expense.month!=""){
+            filteredExpenses=filteredExpenses.filter(e=>e.month==expense.month);
+        }
+        if(expense.day!=""){
+            filteredExpenses=filteredExpenses.filter(e=>e.day==expense.day);
+        }
+        if(expense.type!=""){
+            filteredExpenses=filteredExpenses.filter(e=>e.type==expense.type);
+        }
+        if(expense.description!=""){
+            filteredExpenses=filteredExpenses.filter(e=>e.description==expense.description);
+        }
+        if(expense.eValue!=""){
+            filteredExpenses=filteredExpenses.filter(e=>e.eValue==expense.eValue);
+        }
+        return filteredExpenses;         
+    }
+
+    removeStorage(id){
+        localStorage.removeItem(id)
     }
 }
 
@@ -109,7 +138,7 @@ function register(){
     let type= document.getElementById('type')
     let description= document.getElementById('description')
     let eValue= document.getElementById('value')
-    /*Criando objeto literal com os valores recebidos */
+    /*Criando objeto com os valores recebidos */
     let expense = new Expense(
     year.value,
     month.value,
@@ -122,6 +151,12 @@ function register(){
         db.record(expense);         //cadastrando objeto 
         popUp(true);
         console.log("Cadastrado com sucesso!");
+        year.value="";
+        month.value="";
+        day.value="";
+        type.value="";
+        description.value="";
+        eValue.value="";
     }
     else{
         popUp(false);
@@ -130,16 +165,70 @@ function register(){
 }
 
 
-function loadExpenses(){
-    let expenses=Array();
-    expenses=db.retrieveRegisters();
-    let tableBody=document.getElementById('tableBody');
-    for(exp in expenses){
-        console.log("jonas",exp);
-        let date=`<td>${exp.day}/${exp.month}/${exp.year}</td>`;
-        let type=`<td>${exp.type}</td>`;
-        let description=`<td>${exp.description}</td>`;
-        let eValue=`<td>${exp.eValue}</td>`
-        tableBody.innerHTML=`<tr>${date}${type}${description}${eValue}</tr>`
+function remove(id){
+    db.removeStorage(id);
+    window.location.reload();
+    //document.getElementById(id).innerHTML="";
+}
+
+
+
+function loadExpenses(expenses= Array()){
+    if(expenses.length==0){
+        expenses=db.retrieveRegisters();
     }
+    console.log("teste",expenses);
+    let tableBody=document.getElementById('tableBody');
+    tableBody.innerHTML="";
+    expenses.forEach(function(exp){
+        let date=`<td>${exp.day}/${exp.month}/${exp.year}</td>`;//preparando cada string td
+        let type=exp.type;
+        switch(parseInt(type)){
+            case 1:
+                type="<td>Alimentação</td>";
+                break;
+            case 2:
+                type="<td>Educação</td>";
+                break;
+            case 3:
+                type="<td>Lazer</td>";
+                break;
+            case 4:
+                type="<td>Saúde</td>";
+                break;
+            case 5:
+                type="<td>Transporte</td>";
+                break;
+        }
+        let description=`<td>${exp.description}</td>`;
+        let eValue=`<td>${exp.eValue}</td>`;
+
+        let span='<span class="material-symbols-outlined">delete</span>';
+        let deleteBtn=`<td><button type="button" onclick="remove(${exp.id})">${span}</button></td>`;
+        //let x=`<td><button type="button" class="deletebtn" id=></button></td>`
+
+        //inserindo os tr preenchidos na tabela
+        tableBody.innerHTML+=`<tr id="${exp.id}" >${date}${type}${description}${eValue}${deleteBtn}</tr>`;
+    })
+}
+
+
+function searchExpense(){
+    let year= document.getElementById('year')
+    let month= document.getElementById('month')
+    let day= document.getElementById('day')
+    let type= document.getElementById('type')
+    let description= document.getElementById('description')
+    let eValue= document.getElementById('value')
+
+    let expense = new Expense(
+        year.value,
+        month.value,
+        day.value,
+        type.value,
+        description.value,
+        eValue.value)
+
+    let filteredExpenses=db.search(expense);
+    this.loadExpenses(filteredExpenses);
 }
