@@ -158,3 +158,34 @@ select > option{
     font-size: 1.25rem;
     color: #dc3545;
 }
+table{
+    width: 90%;
+    margin:5% 0;
+    border-collapse: collapse;
+}
+th{
+    font-weight: bold;
+}
+tr{
+    border-top: 1px solid #dee2e6;
+}
+th,td{
+    padding: .75rem .5rem;
+    border: none;
+    margin: 0;
+    text-align: left;
+}
+tr:hover{
+    background-color: rgba(128, 128, 128, 0.164);
+}
+td > button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+td > button > span{
+    color: rgba(0, 0, 0, 0.425);
+}
+td > button > span:hover{
+    color: black;
+}
