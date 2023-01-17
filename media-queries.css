@@ -62,9 +62,15 @@
         overflow-y: hidden;
         transition: .6s;
     }
+    #navbar > ul >li{
+        padding-bottom: 5px;
+    }
+    #navbar > ul >li > a{
+        padding: 5px;
+    }
     ul.dropDown{
         visibility: visible;
-        height: 61px;
+        height: 71px;
     }
     #navbar > button{
         display: block;
