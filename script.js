@@ -12,18 +12,31 @@ function popUp(x){                               //controle do popUp lancado ao 
         popUp.className="active";
         blur.className="active"; 
         blur.style="display:block;";
+        let title=document.getElementById('title');
+        let h5=title.children[0];
+        let content=document.getElementById('content');
+        let p=content.children[0];
+        let btn=document.getElementById('btn');
+        let button=btn.children[0];
         if(x==true){
-            let title=document.getElementById('title');
-            let h5=title.children[0];
+
             h5.innerHTML="Registro inserido com sucesso";
             h5.style="color:#28a745;";
-            let content=document.getElementById('content');
-            let p=content.children[0];
+
             p.innerHTML="Despesa foi cadastrada com sucesso!";
-            let btn=document.getElementById('btn');
-            let button=btn.children[0];
+
             button.textContent="Voltar";
             button.style="background-color:#28a745;border-color: #1e7e34;";
+            x=false;
+        }
+        else{
+            h5.innerHTML="Erro na inclusão do registro";
+            h5.style="color:#dc3545;";
+
+            p.innerHTML="Erro na gravação, verifique se todos os campos foram preenchidos corretamente!";
+
+            button.textContent="Voltar e corrigir";
+            button.style="background-color:#dc3545;border-color: #bd2130;";
         }
     }
 }
