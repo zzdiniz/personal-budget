@@ -86,10 +86,14 @@ class Db{//classe que responsavel por inserir dados no local storage
                 year:expense.year,
                 month:expense.month
             }*/
+            if(expense===null || expense===undefined){
+                continue;//caso o valor acessado tenha sido excluido, pula pra proxima iteracao
+            }
             expenses.push(expense);
             
         } 
-        console.log(expenses);                                                                      
+        console.log(expenses);  
+        return expenses;                                                                    
     }
 }
 
@@ -127,5 +131,14 @@ function register(){
 
 
 function loadExpenses(){
-    db.retrieveRegisters();
+    let expenses=Array();
+    expenses=db.retrieveRegisters();
+    let tableBody=document.getElementById('tableBody');
+    for(exp in expenses){
+        let date=`<td>${exp.day}/${exp.month}/${exp.year}</td>`;
+        let type=`<td>${exp.type}</td>`;
+        let description=`<td>${exp.description}</td>`;
+        let eValue=`<td>${exp.eValue}</td>`
+        tableBody.innerHTML=`<tr>${date}${type}${description}${eValue}</tr>`
+    }
 }
