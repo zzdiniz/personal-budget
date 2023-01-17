@@ -1,0 +1,49 @@
+@media (max-width:1200px){/*breakpoint*/
+    #year,#month,#day,#value{
+        width: 130px;
+    }
+    #type{
+        width: 450px;
+    }
+    #description{
+        width: 610px;
+    }
+}
+@media (max-width:900px){/*breakpoint*/
+    #year,#month,#day,#value{
+        width: 90px;
+    }
+    #type{
+        width: 330px;
+    }
+    #description{
+        width: 450px;
+    }
+}
+@media (max-width:770px){/*breakpoint*/
+    main{
+        margin: 2%;
+    }
+    #row1,#row2{
+        flex-direction: column;
+    }
+    #row2{
+        margin-top: 0;
+    }
+    #year,#month,#day,#value,#type,#description{
+        margin:0;
+        margin-top: 5px;
+        width: 100%;
+    }
+    #row2 > button{
+        margin-left: auto;
+    }
+    table{
+        width: 100%;
+    }
+    td{
+        width: 100%;
+        padding: 0.35rem;
+    }
+
+}
