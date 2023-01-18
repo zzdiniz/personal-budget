@@ -60,7 +60,7 @@
         visibility: hidden;
         height: 0;
         overflow-y: hidden;
-        transition: .6s;
+        transition: .6s;/*transicao suave quando o botao for clicado*/
     }
     #navbar > ul >li{
         padding-bottom: 5px;

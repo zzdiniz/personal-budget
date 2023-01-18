@@ -14,7 +14,7 @@ body,html{
     background-color: #fff;
 }
 
-
+/*estilizando barra de navegacao*/
 #navbar{
     height: 61px;
     background-color: #007bff;
@@ -41,7 +41,7 @@ body,html{
 #navbar > button{
     display: none;
 }
-
+/*Estilizando area principal*/
 main{
     margin: 5%;
 }

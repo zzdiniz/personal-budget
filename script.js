@@ -110,7 +110,7 @@ class Db{//classe que responsavel por inserir dados no local storage
         return expenses;                                                                    
     }
 
-    search(expense){
+    search(expense){//procura despesa aplicando filtros
         let filteredExpenses=Array();
         filteredExpenses=this.retrieveRegisters();
         if(expense.year!=""){
@@ -131,7 +131,7 @@ class Db{//classe que responsavel por inserir dados no local storage
         if(expense.eValue!=""){
             filteredExpenses=filteredExpenses.filter(e=>e.eValue==expense.eValue);
         }
-        return filteredExpenses;         
+        return filteredExpenses;//retorna array com filtro aplicado        
     }
 
     removeStorage(id){
@@ -178,17 +178,16 @@ function register(){
 }
 
 
-function remove(id){
+function remove(id){//quando remover uma despesa a tela sera recarregada
     db.removeStorage(id);
     window.location.reload();
-    //document.getElementById(id).innerHTML="";
 }
 
 
 
-function loadExpenses(expenses= Array()){
+function loadExpenses(expenses= Array()){//metodo que carrega as despesa na tela
     if(expenses.length==0){
-        expenses=db.retrieveRegisters();
+        expenses=db.retrieveRegisters();//recupera os registros (getItem)
     }
     console.log("teste",expenses);
     let tableBody=document.getElementById('tableBody');
@@ -215,10 +214,9 @@ function loadExpenses(expenses= Array()){
         }
         let description=`<td>${exp.description}</td>`;
         let eValue=`<td>${exp.eValue}</td>`;
-
+        //criando botao de exclusao para cada despesa
         let span='<span class="material-symbols-outlined">delete</span>';
         let deleteBtn=`<td><button type="button" onclick="remove(${exp.id})">${span}</button></td>`;
-        //let x=`<td><button type="button" class="deletebtn" id=></button></td>`
 
         //inserindo os tr preenchidos na tabela
         tableBody.innerHTML+=`<tr id="${exp.id}" >${date}${type}${description}${eValue}${deleteBtn}</tr>`;
@@ -226,7 +224,7 @@ function loadExpenses(expenses= Array()){
 }
 
 
-function searchExpense(){
+function searchExpense(){//busca despesa a partir de um filtro
     let year= document.getElementById('year')
     let month= document.getElementById('month')
     let day= document.getElementById('day')
@@ -242,19 +240,19 @@ function searchExpense(){
         description.value,
         eValue.value)
 
-    let filteredExpenses=db.search(expense);
-    this.loadExpenses(filteredExpenses);
+    let filteredExpenses=db.search(expense);//executa o metodo passando filtro como parametro
+    this.loadExpenses(filteredExpenses);//carrega as despesas filtradas na tela
 }
 
-function toggleVisibility(){
+function toggleVisibility(){//controledo menu dropdown
     let ul=document.getElementById('dpDown');
     let main=document.getElementById('container');
-    if(ul.className!="" || ul.className){
+    if(ul.className!="" || ul.className){//se estiver ativado desativa
         ul.className="";
         ul.style="";
         main.style="";
     }
-    else{
+    else{//ativa
         ul.className="dropDown";
         ul.style="visibility: visible;height: 61px;"
         main.style="margin-top:60px;"
